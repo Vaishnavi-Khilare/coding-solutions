@@ -1,13 +1,15 @@
-select h.hacker_id ,h.name
-from hackers h
-join submissions s
-    on h.hacker_id=s.hacker_id
-join challenges c
-    on s.challenge_id=c.challenge_id
-join difficulty d
-    on c.difficulty_level=d.difficulty_level
-where s.score =d.score
-group by h.hacker_id ,h.name
-having count(c.challenge_id)>1
-order by count(c.challenge_id) desc,h.hacker_id asc;
- 
+select w.id, p.age, w.coins_needed, w.power
+from wands w
+join wands_property p
+on w.code = p.code
+where p.is_evil=0
+and w.coins_needed=(
+    select min(w1.coins_needed)
+    from wands w1
+    where w1.code=w.code
+    and  w1.power=w.power
+)
+order by 
+   w.power DESC,
+   p.age desc;
+
