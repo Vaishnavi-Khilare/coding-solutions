@@ -30,7 +30,7 @@ Write a query to print the pattern _P(20)_.
 **Language:** SQL  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T17:12:59.502Z  
+**Submitted:** 2026-11-11T17:14:09.021Z  
 
 ```sql
 with RECURSIVE numbers as(
