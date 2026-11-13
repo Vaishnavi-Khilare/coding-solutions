@@ -1,4 +1,4 @@
-# Occupations
+# Binary Tree Nodes
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -52,25 +52,17 @@ The <em>Binary Tree</em> below illustrates the sample:
 **Language:** SQL  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-13T15:09:18.958Z  
+**Submitted:** 2026-11-13T15:35:05.429Z  
 
 ```sql
-SELECT 
-    max(case when occupation ="Doctor" then name end)as Doctor,
-    max(case when occupation ="Professor" then name end)as Professor,
-    max(case when occupation ="Singer" then name end)as Singer,
-    max(case when occupation ="Actor" then name end)as Actor
-from (
-    select name,occupation,
-       row_number() over(
-        partition by occupation
-        order by name
-       )as rn
-    from occupations
-)as temp
-group by rn
-order by rn
-            
+SELECT n,
+    case 
+        when p is null then"Root"
+        when n in(select p from bst)then "Inner"
+        else "Leaf"
+    end
+from bst
+order by n;
 
 ```
 
