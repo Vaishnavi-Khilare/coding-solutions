@@ -1,16 +1,8 @@
-SELECT 
-    max(case when occupation ="Doctor" then name end)as Doctor,
-    max(case when occupation ="Professor" then name end)as Professor,
-    max(case when occupation ="Singer" then name end)as Singer,
-    max(case when occupation ="Actor" then name end)as Actor
-from (
-    select name,occupation,
-       row_number() over(
-        partition by occupation
-        order by name
-       )as rn
-    from occupations
-)as temp
-group by rn
-order by rn
-            
+SELECT n,
+    case 
+        when p is null then"Root"
+        when n in(select p from bst)then "Inner"
+        else "Leaf"
+    end
+from bst
+order by n;
